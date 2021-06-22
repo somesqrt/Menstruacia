@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/archivo_narrow</item>
+        <item>@font/archivo_narrow_bold</item>
+        <item>@font/archivo_narrow_italic</item>
+        <item>@font/arima_madurai</item>
+        <item>@font/arima_madurai_bold</item>
+        <item>@font/arima_madurai_medium</item>
+        <item>@font/arima_madurai_thin</item>
+    </array>
+</resources>

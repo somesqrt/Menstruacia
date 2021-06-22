@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Cyclus</string>
+    <string name="title_activity_signup">Login</string>
+    <string name="dobry_den">Good afternoon</string>
+    <string name="udaje_signup">enter your login details</string>
+    <string name="signup_button1">Sign in</string>
+    <string name="signup_button2">Sign up</string>
+
+
+    <string name="hello_info">Good afternoon</string>
+    <string name="name_info">Your name: </string>
+    <string name="mail_info">E-mail: </string>
+    <string name="otazka_info">Would you like to change your password?</string>
+    <string name="info_button1">Change password</string>
+
+    <string name="title_activity_registracia">Registration</string>
+    <string name="udaje_registracia">Enter your registration details</string>
+    <string name="reg_button1">Register</string>
+    <string name="reg_button2">Login</string>
+
+    <string name ="main_dobry">Good afternoon</string>
+
+</resources>

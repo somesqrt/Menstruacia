@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Cyclus</string>
+    <string name="title_activity_signup">Вход</string>
+    <string name="dobry_den">Добрый день</string>
+    <string name="udaje_signup">введите данные для входа</string>
+    <string name="signup_button1">Войти</string>
+    <string name="signup_button2">Регистрироватся</string>
+
+
+    <string name="hello_info">Добрый день</string>
+    <string name="name_info">Ваше имя: </string>
+    <string name="mail_info">E-mail: </string>
+    <string name="otazka_info">Хотите изменить пароль?</string>
+    <string name="info_button1">Изменить пароль</string>
+
+    <string name="title_activity_registracia">Регистрация</string>
+    <string name="udaje_registracia">Введите данные для регистрации</string>
+    <string name="reg_button1">Зарегестрироватся</string>
+    <string name="reg_button2">Войти</string>
+
+    <string name ="main_dobry">Добрый день</string>
+
+</resources>

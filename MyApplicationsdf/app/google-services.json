@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "827544596596",
+    "firebase_url": "https://cyclus-46549-default-rtdb.firebaseio.com",
+    "project_id": "cyclus-46549",
+    "storage_bucket": "cyclus-46549.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827544596596:android:cc788ec875e079edbae121",
+        "android_client_info": {
+          "package_name": "com.example.myapplicationsdf"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827544596596-j3il2gi8bnaod5vol9c9l14m3akmbplp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplicationsdf",
+            "certificate_hash": "0ddfea0875cbe0ffec132af45d8e2a0c6a9cf53d"
+          }
+        },
+        {
+          "client_id": "827544596596-q1spjvvmgfhfo4u0cdn5r1cbqs8uqjj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAb6scqfgLtL2tsebCYmscB6iB2BqHmt-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827544596596-q1spjvvmgfhfo4u0cdn5r1cbqs8uqjj9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

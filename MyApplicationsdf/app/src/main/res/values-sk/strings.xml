@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Cyclus</string>
+    <string name="title_activity_signup">Signup</string>
+    <string name="dobry_den">Dobry den</string>
+    <string name="udaje_signup">zadajte svoje prihlasovacie udaje</string>
+    <string name="signup_button1">Prihlásiť sa</string>
+    <string name="signup_button2">Zaregistrujte sa</string>
+
+
+    <string name="hello_info">Dobry den</string>
+    <string name="name_info">Vase meno: </string>
+    <string name="mail_info">E-mail: </string>
+    <string name="otazka_info">Chcete zmenit heslo?</string>
+    <string name="info_button1">Zmenit heslo</string>
+
+    <string name="title_activity_registracia">Registrácia</string>
+    <string name="udaje_registracia">Zadajte svoje registračné údaje</string>
+    <string name="reg_button1">Registrovat sa</string>
+    <string name="reg_button2">Prihlásiť sa</string>
+
+    <string name ="main_dobry">Dobry den</string>
+</resources>
