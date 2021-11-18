@@ -10,5 +10,5 @@ public class NotInfo {
 
     String mesiac;
 
-    String  notification;
+    String notification;
 }

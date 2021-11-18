@@ -12,7 +12,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "alldataDB";
     public static final String TABLE_NAME = "dniTable";
 
-    public static final String ID_key = "_id";
+    public static final String ID_KEY = "_id";
     public static final String KEY_ID = "notPrimaryId";
     public static final String KEY_DNI = "dni";
 
@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + "(" + ID_key + " integer primary key," +KEY_ID + " text,"  +KEY_DNI + " text" + ")");
+        db.execSQL("create table " + TABLE_NAME + "(" + ID_KEY + " integer primary key," + KEY_ID + " text," + KEY_DNI + " text" + ")");
     }
 
     @Override

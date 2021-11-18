@@ -9,11 +9,6 @@ import androidx.room.*;
 
 public abstract class AppDatabase extends RoomDatabase {
 
-    public abstract UserDao userDao();
-    public abstract UsersDataDao usersDataDao();
-    public abstract NotesDao notesDao();
-    public abstract NotInfoDao notInfoDao();
-
     private static volatile AppDatabase db;
 
     public static AppDatabase getDb(Context context) {
@@ -29,4 +24,12 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return result;
     }
+
+    public abstract UserDao userDao();
+
+    public abstract UsersDataDao usersDataDao();
+
+    public abstract NotesDao notesDao();
+
+    public abstract NotInfoDao notInfoDao();
 }

@@ -68,15 +68,17 @@ public class NoteViewModel extends AndroidViewModel {
 
     }
 
-    /*+*/public CompletableFuture<UsersData> firstGetSimilar(String email, String month) throws ExecutionException, InterruptedException {
+    /*+*/
+    public CompletableFuture<UsersData> firstGetSimilar(String email, String month) throws ExecutionException, InterruptedException {
         return CompletableFuture.supplyAsync(() -> {
-              return usersDataDao.getAllWithEmailAndMonthLike(email, month);
+            return usersDataDao.getAllWithEmailAndMonthLike(email, month);
         });
     }
 
-    /*+*/public CompletableFuture<UsersData> getSimilar(String email, String month) throws ExecutionException, InterruptedException {
+    /*+*/
+    public CompletableFuture<UsersData> getSimilar(String email, String month) throws ExecutionException, InterruptedException {
         return CompletableFuture.supplyAsync(() -> {
-        return usersDataDao.getAllWithEmailAndMonthLike(email, month); //**********************************************
+            return usersDataDao.getAllWithEmailAndMonthLike(email, month); //**********************************************
         });
     }
 
@@ -112,31 +114,34 @@ public class NoteViewModel extends AndroidViewModel {
 
     }
 
-    /*+*/public CompletableFuture<String> getUsersDataByMail(String search) throws ExecutionException, InterruptedException {
+    /*+*/
+    public CompletableFuture<String> getUsersDataByMail(String search) throws ExecutionException, InterruptedException {
         return CompletableFuture.supplyAsync(() -> {
-        String email;
-        usersData = usersDataDao.getByMail(search);
-        if (usersData != null) {
-            email = usersData.email;
-            return email;
-        }
-        return null;
+            String email;
+            usersData = usersDataDao.getByMail(search);
+            if (usersData != null) {
+                email = usersData.email;
+                return email;
+            }
+            return null;
         });
     }
 
-    /*+*/public CompletableFuture<String> getMenoByID(long id) throws ExecutionException, InterruptedException {
+    /*+*/
+    public CompletableFuture<String> getMenoByID(long id) throws ExecutionException, InterruptedException {
         return CompletableFuture.supplyAsync(() -> {
-        String meno;
-        user = userDao.getById(id);
-        if (user != null) {
-            meno = user.name;
-            return meno;
-        }
-        return null;
+            String meno;
+            user = userDao.getById(id);
+            if (user != null) {
+                meno = user.name;
+                return meno;
+            }
+            return null;
         });
     }
 
-    /*+*/public CompletableFuture<Integer> checkLogIn(String email, String password) {
+    /*+*/
+    public CompletableFuture<Integer> checkLogIn(String email, String password) {
         return CompletableFuture.supplyAsync(() -> {
             Integer id = -1;
             user = userDao.getAllWithNameLike(email);
@@ -146,13 +151,14 @@ public class NoteViewModel extends AndroidViewModel {
         });
     }
 
-    /*+*/public CompletableFuture<Integer> checkMail(String email){
+    /*+*/
+    public CompletableFuture<Integer> checkMail(String email) {
         return CompletableFuture.supplyAsync(() -> {
             Integer id = -1;
-        user = userDao.getAllWithNameLike(email);
-        if (user.mail.equals(email))
-            id = (int) user.id;
-        return id;
+            user = userDao.getAllWithNameLike(email);
+            if (user.mail.equals(email))
+                id = (int) user.id;
+            return id;
         });
     }
 
@@ -166,13 +172,14 @@ public class NoteViewModel extends AndroidViewModel {
 
     }
 
-    /*+*/public CompletableFuture<User> getUserByMail(String searchMail) throws ExecutionException, InterruptedException {
+    /*+*/
+    public CompletableFuture<User> getUserByMail(String searchMail) throws ExecutionException, InterruptedException {
         return CompletableFuture.supplyAsync(() -> {
-        user = userDao.getByMail(searchMail);
-        if (user != null) {
-            return user;
-        }
-        return null;
+            user = userDao.getByMail(searchMail);
+            if (user != null) {
+                return user;
+            }
+            return null;
         });
     }
 

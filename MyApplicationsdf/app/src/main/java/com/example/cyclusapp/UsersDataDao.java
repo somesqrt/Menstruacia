@@ -27,7 +27,6 @@ public interface UsersDataDao {
     UsersData getAllWithEmailAndMonthLike(String searchMail, String searchMonth);
 
 
-
     @Insert
     void save(UsersData usersData);
 

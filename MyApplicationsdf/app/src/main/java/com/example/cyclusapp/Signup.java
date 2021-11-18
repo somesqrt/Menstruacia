@@ -26,24 +26,23 @@ import java.util.concurrent.ExecutionException;
 
 public class Signup extends AppCompatActivity {
 
-    public static ArrayList<String> allID = new ArrayList<String>();
     private static final String TAG = "RegIntentService";
+    public static ArrayList<String> allID = new ArrayList<String>();
     public static String idForData;
     public static ArrayList<String> dniForDatabase = new ArrayList<String>();
-    private EditText mail, pass;
-    public User IDmailfromDB;
-    private List<String> listData;
-    private List<String> listPassData;
-    private List<String> listID;
-    private List<String> listNamesUsers;
     public static String idteraz;
     public static String dnesDate;
     public static String meno;
     public static long id_for_check_LogIn;
-    NoteViewModel noteViewModel;
     static UsersData usersData;
+    public User IDmailfromDB;
+    NoteViewModel noteViewModel;
     Button login;
-
+    private EditText mail, pass;
+    private List<String> listData;
+    private List<String> listPassData;
+    private List<String> listID;
+    private List<String> listNamesUsers;
 
     public void decoder(String dni) {
         String time = "";
@@ -145,7 +144,7 @@ public class Signup extends AppCompatActivity {
                 });*/
                 try {
                     noteViewModel.firstGetSimilar(email, dnesDate).thenAccept(usersData -> {
-                        Signup.usersData= usersData;
+                        Signup.usersData = usersData;
                         CalendarAdapter.daysForView.clear();
                         if (usersData != null)
                             decoder(usersData.dni);
@@ -163,7 +162,7 @@ public class Signup extends AppCompatActivity {
                     }
                 });*/
                 try {
-                    noteViewModel.getMenoByID(id).thenAccept(meno ->{
+                    noteViewModel.getMenoByID(id).thenAccept(meno -> {
                         Signup.meno = meno;
                     });
                 } catch (ExecutionException e) {

@@ -40,13 +40,13 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull CalendarViewHolder holder, int position) {
 
-        if (daysForView.contains(daysOfMonth.get(position)) && daysOfMonth.get(position) != "") {
-                holder.dayOfMonth.setText(daysOfMonth.get(position));
+        if (daysForView.contains(daysOfMonth.get(position)) && !daysOfMonth.get(position).equeals("")) {  // != заменил
+            holder.dayOfMonth.setText(daysOfMonth.get(position));
 
-                holder.dayOfMonth.setTextColor(Color.parseColor("#FFFFFF"));
+            holder.dayOfMonth.setTextColor(Color.parseColor("#FFFFFF"));
 
-                holder.dayOfMonth.setBackgroundColor(Color.parseColor("#FF0000"));
-        } else if(MainActivity.ShadowDays.contains(daysOfMonth.get(position))) {
+            holder.dayOfMonth.setBackgroundColor(Color.parseColor("#FF0000"));
+        } else if (MainActivity.ShadowDays.contains(daysOfMonth.get(position))) {
 
             holder.dayOfMonth.setText(daysOfMonth.get(position));
 
@@ -54,9 +54,9 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
 
             holder.dayOfMonth.setTextColor(Color.parseColor("#FFFFFF"));
 
-        }else{
-                holder.dayOfMonth.setText(daysOfMonth.get(position));
-            }
+        } else {
+            holder.dayOfMonth.setText(daysOfMonth.get(position));
+        }
 
     }
 

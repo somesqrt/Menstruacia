@@ -12,7 +12,7 @@ import com.example.cyclusapp.User;
 import java.util.List;
 
 @Dao
-public  interface UserDao {
+public interface UserDao {
 
     @Query("SELECT * FROM user WHERE id = :id")
     User getById(long id);

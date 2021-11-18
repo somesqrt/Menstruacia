@@ -11,18 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-{
-    public static ArrayList <String> alldays = new ArrayList <String>();
+public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static ArrayList<String> alldays = new ArrayList<String>();
     public final TextView dayOfMonth;
     private final CalendarAdapter.OnItemListener onItemListener;
 
 
-
-
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public CalendarViewHolder(@NonNull View itemView, CalendarAdapter.OnItemListener onItemListener)
-    {
+    public CalendarViewHolder(@NonNull View itemView, CalendarAdapter.OnItemListener onItemListener) {
         super(itemView);
         dayOfMonth = itemView.findViewById(R.id.cellDayText);
         this.onItemListener = onItemListener;
@@ -33,9 +29,8 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public void onClick(View view)
-    {
-        if(MainActivity.dniToView != null) {
+    public void onClick(View view) {
+        if (MainActivity.dniToView != null) {
             MainActivity.dniToViewToArrayList(MainActivity.dniToView);
             if (MainActivity.dniToTwolick.contains(dayOfMonth.getText())) {
                 MainActivity.DayForDeleteMayBe = "";
@@ -57,7 +52,7 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.
                 dayOfMonth.setBackgroundColor(Color.parseColor("#FF0000"));
 
             }
-        }else{
+        } else {
             MainActivity.DayForDeleteMayBe = "";
             MainActivity.DayForDeleteMayBe = String.valueOf(dayOfMonth.getText());
             alldays.add(String.valueOf(dayOfMonth.getText()));
@@ -67,7 +62,6 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.
             dayOfMonth.setBackgroundColor(Color.parseColor("#FF0000"));
         }
     }
-
 
 
 }

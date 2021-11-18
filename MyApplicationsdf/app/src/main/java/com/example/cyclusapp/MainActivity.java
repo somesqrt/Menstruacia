@@ -49,10 +49,6 @@ import butterknife.*;
 public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener {
 
 
-    NoteListAdapter noteListAdapter;
-    private NotificationManager nm;
-    private final int NOTIFICATOIN_ID = 127;
-
     public static int datastart;
     public static ArrayList<String> ShadowDays = new ArrayList<String>();
     public static String id, meno, password;
@@ -61,19 +57,41 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     public static ArrayList<String> allID = new ArrayList<String>();
     public static ArrayList<String> dniToTwolick = new ArrayList<String>();
     public static String dniToView = "";
-    private TextView monthYearText;
-    private RecyclerView calendarRecyclerView;
     public static LocalDate selectedDate;
     public static String MonthId;
-    private static List<String> listID;
     static int count = 0;
-
+    private static List<String> listID;
+    private final int NOTIFICATOIN_ID = 127;
+    NoteListAdapter noteListAdapter;
     UsersData usersData = new UsersData();
     NoteViewModel noteViewModel;
-
     @BindView(R.id.noteRecyclerView1)
     RecyclerView noteRecyclerView;
+    private NotificationManager nm;
+    private TextView monthYearText;
+    private RecyclerView calendarRecyclerView;
 
+    public static void dniToViewToArrayList(String dniToView) {
+        System.out.println("*//*//******************* я запустился " + dniToView);
+        int i = 0;
+        String time = "";
+        while (i != dniToView.length()) {
+
+            if (dniToView.charAt(i) != ' ') {
+                time = time + dniToView.charAt(i);
+                i++;
+            } else if (dniToView.charAt(i) == ' ') {
+                dniToTwolick.add(time);
+                time = "";
+                i++;
+            }
+        }
+    }
+
+    public static void vypocet_Montch() {
+        MonthId = String.valueOf(selectedDate.getYear());
+        MonthId = MonthId + String.valueOf(selectedDate.getMonthValue());
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -173,7 +191,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         noteViewModel.addNoteToUser(Signup.idForData, MonthId, descriptionEditText.getText().toString());
     }
 
-
     public void firstInitWithData(String key) throws ExecutionException, InterruptedException {
         /*CompletableFuture.supplyAsync(() -> {
             try {
@@ -183,7 +200,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             }
 
             return null;
-        })*/noteViewModel.getSimilar(Signup.idForData, key).thenAccept(usersData -> {
+        })*/
+        noteViewModel.getSimilar(Signup.idForData, key).thenAccept(usersData -> {
             Log.i(Thread.currentThread().getName(), "VOT TUT ETO ****************");
             if (usersData != null) {
                 dniToView = usersData.dni;
@@ -203,7 +221,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             }
 
             return null;
-        })*/noteViewModel.getSimilar(Signup.idForData, key).thenAccept(usersData -> {
+        })*/
+        noteViewModel.getSimilar(Signup.idForData, key).thenAccept(usersData -> {
             if (usersData != null) {
                 dniToView = usersData.dni;
                 dniToViewToArrayList(dniToView);
@@ -222,7 +241,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                     }
 
                     return null;
-                })*/noteViewModel.getSimilar(Signup.idForData, (String.valueOf(Integer.parseInt(key) - 1))).thenAccept(usersData1 -> {
+                })*/
+                noteViewModel.getSimilar(Signup.idForData, (String.valueOf(Integer.parseInt(key) - 1))).thenAccept(usersData1 -> {
                     try {
                         podInit(usersData1);
                     } catch (ExecutionException e) {
@@ -251,7 +271,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                 }
 
                 return null;
-            })*/noteViewModel.getSimilar(Signup.idForData, shadoKey).thenAccept(usersData -> {
+            })*/
+            noteViewModel.getSimilar(Signup.idForData, shadoKey).thenAccept(usersData -> {
                 if (usersData != null) {
                     dniToView = usersData.dni;
                     int pocet = 0;
@@ -280,23 +301,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                     }
                 }
             });
-        }
-    }
-
-    public static void dniToViewToArrayList(String dniToView) {
-        System.out.println("*//*//******************* я запустился " + dniToView);
-        int i = 0;
-        String time = "";
-        while (i != dniToView.length()) {
-
-            if (dniToView.charAt(i) != ' ') {
-                time = time + dniToView.charAt(i);
-                i++;
-            } else if (dniToView.charAt(i) == ' ') {
-                dniToTwolick.add(time);
-                time = "";
-                i++;
-            }
         }
     }
 
@@ -350,13 +354,13 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                 } catch (Exception e) {
                     return -1L;
                 }
-            })*/noteViewModel.getUsersDataByMail(Signup.idForData).thenAccept(emailForCheckEmpty -> {
+            })*/
+            noteViewModel.getUsersDataByMail(Signup.idForData).thenAccept(emailForCheckEmpty -> {
 
 
-
-            if (emailForCheckEmpty == null) {
-                noteViewModel.addDni(id, mesiac, dniToDatabase);
-            } else {
+                if (emailForCheckEmpty == null) {
+                    noteViewModel.addDni(id, mesiac, dniToDatabase);
+                } else {
 
                 /*CompletableFuture.supplyAsync(() -> {
                     try {
@@ -367,25 +371,25 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
                     return null;
                 })*/
-                try {
-                    noteViewModel.getSimilar(id, mesiac).thenAccept(usersData -> {
+                    try {
+                        noteViewModel.getSimilar(id, mesiac).thenAccept(usersData -> {
 
-                        if (usersData != null) {
-                            usersData.dni = dniToDatabase;
-                            noteViewModel.updateDni(usersData);
-                        } else {
-                            noteViewModel.addDni(id, mesiac, dniToDatabase);
-                        }
-                    });
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                            if (usersData != null) {
+                                usersData.dni = dniToDatabase;
+                                noteViewModel.updateDni(usersData);
+                            } else {
+                                noteViewModel.addDni(id, mesiac, dniToDatabase);
+                            }
+                        });
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
 
-        });
+            });
             CalendarAdapter.daysForView.add(DayForDeleteMayBe);
             dniToTwolick.add(DayForDeleteMayBe);
         } else { //********************************************************************************************************************************************************************
@@ -435,7 +439,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                 }
 
                 return null;
-            })*/noteViewModel.getSimilar(id, mesiac).thenAccept(usersData -> {
+            })*/
+            noteViewModel.getSimilar(id, mesiac).thenAccept(usersData -> {
 
                 if (usersData != null) {
                     usersData.dni = dniToDatabase;
@@ -452,11 +457,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     private void initWidgets() {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
-    }
-
-    public static void vypocet_Montch() {
-        MonthId = String.valueOf(selectedDate.getYear());
-        MonthId = MonthId + String.valueOf(selectedDate.getMonthValue());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -522,7 +522,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             }
 
             return null;
-        })*/noteViewModel.getSimilar(Signup.idForData, key).thenAccept(usersData -> {
+        })*/
+        noteViewModel.getSimilar(Signup.idForData, key).thenAccept(usersData -> {
 
             if (usersData != null)
                 decoder(usersData.dni);

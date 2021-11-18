@@ -31,19 +31,18 @@ import butterknife.ButterKnife;
 
 public class AccountInformation extends AppCompatActivity {
 
+    NoteViewModel noteViewModel;
     private EditText oldpass, newpass, newrepass;
     private TextView name, posta;
-    private DatabaseReference mDataBase;
-    private List<String> listPassData;
-    private List<String> DaysData;
-    NoteViewModel noteViewModel;
+    //private DatabaseReference mDataBase;
+    //private List<String> listPassData;
+    //private List<String> DaysData;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_information);
-
 
 
         init();
@@ -55,7 +54,7 @@ public class AccountInformation extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void init(){
+    private void init() {
         oldpass = findViewById(R.id.OldPassword);
         newpass = findViewById(R.id.newPass);
         newrepass = findViewById(R.id.NewRepass);
@@ -70,29 +69,23 @@ public class AccountInformation extends AppCompatActivity {
         posta.setVisibility(View.VISIBLE);
 
 
-
     }
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void OnKlickChangePass(View v) throws ExecutionException, InterruptedException {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ChangePass:
-
                 String oldpassword = oldpass.getText().toString();
                 String newpassword = newpass.getText().toString();
                 String newrepassword = newrepass.getText().toString();
-
-
-
-                if (oldpassword.equals("") || newpassword.equals("") || newrepassword.equals("") ) {
+                if (oldpassword.equals("") || newpassword.equals("") || newrepassword.equals("")) {
                     Toast.makeText(AccountInformation.this, "Zadajte udaje", Toast.LENGTH_SHORT).show();
-                }else {
-                    if(newrepassword.equals(newpassword)){
-                        if(newpassword.equals(oldpassword)){
+                } else {
+                    if (newrepassword.equals(newpassword)) {
+                        if (newpassword.equals(oldpassword)) {
                             Toast.makeText(AccountInformation.this, "Staré a nové heslo sú identické.", Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
                             /*final User[] user = {new User()};
                             CompletableFuture.runAsync(() ->{
                                 try {
@@ -102,32 +95,30 @@ public class AccountInformation extends AppCompatActivity {
                                 }
                             });*/
                             noteViewModel.getUserByMail((String) posta.getText()).thenAccept(user1 -> {
-                                if(user1 != null) {
+                                if (user1 != null) {
                                     user1.password = newrepassword;
                                     noteViewModel.updateHeslo(user1);
-                                }else{
+                                } else {
                                     Toast.makeText(AccountInformation.this, "Error.", Toast.LENGTH_SHORT).show();
                                 }
                             });
 
-                                Intent intent = new Intent(this, AccountInformation.class);
-                                startActivity(intent);
-
+                            Intent intent = new Intent(this, AccountInformation.class);
+                            startActivity(intent);
 
 
                         }
-                    }else{
+                    } else {
                         Toast.makeText(AccountInformation.this, "Nové heslo nebolo potvrdené.", Toast.LENGTH_SHORT).show();
                     }
                 }
-
             default:
                 break;
         }
     }
 
-    public void Back(View v){
-        switch (v.getId()){
+    public void Back(View v) {
+        switch (v.getId()) {
             case R.id.behind:
                 MainActivity.dniToView = "";
                 MainActivity.dniToTwolick.clear();

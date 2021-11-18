@@ -32,16 +32,14 @@ import butterknife.ButterKnife;
 
 public class registracia extends AppCompatActivity {
 
+    public static String dnesDate;
+    static String USER_KEY = "user";
     CoordinatorLayout coordinatorLayout;
+    Button btnPrihlasFromRegister;
+    NoteViewModel noteViewModel;
     private EditText name, mail, pass, repass;
     private DatabaseReference mDataBase;
-    static String USER_KEY = "user";
     private List<String> listData;
-    Button btnPrihlasFromRegister;
-    public static String dnesDate;
-
-    NoteViewModel noteViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,37 +59,37 @@ public class registracia extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("yyyyMM", Locale.getDefault());
         String formattedDate = df.format(c);
 
-        if(formattedDate.charAt(4)!=0){
+        if (formattedDate.charAt(4) != 0) {
             dnesDate = "";
             for (int i = 0; i < formattedDate.length(); i++) {
-                if(i!=4){
-                    dnesDate = dnesDate+formattedDate.charAt(i);
+                if (i != 4) {
+                    dnesDate = dnesDate + formattedDate.charAt(i);
                 }
             }
         }
     }
 
-    private void init(){
-         name = findViewById(R.id.meno);
-         mail = findViewById(R.id.Email);
-         pass = findViewById(R.id.Pass);
-         repass = findViewById(R.id.Repass);
-         listData = new ArrayList<>();
-         mDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
+    private void init() {
+        name = findViewById(R.id.meno);
+        mail = findViewById(R.id.Email);
+        pass = findViewById(R.id.Pass);
+        repass = findViewById(R.id.Repass);
+        listData = new ArrayList<>();
+        mDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onClickLogin(View v) throws ExecutionException, InterruptedException {
-            String meno = name.getText().toString();
-            String email = mail.getText().toString();
-            String password = pass.getText().toString();
-            String repassword = repass.getText().toString();
+        String meno = name.getText().toString();
+        String email = mail.getText().toString();
+        String password = pass.getText().toString();
+        String repassword = repass.getText().toString();
 
-            if (meno.equals("") || mail.equals("") || password.equals("") ) {
-                Toast.makeText(registracia.this, "Zadajte udaje", Toast.LENGTH_SHORT).show();
-            }else{
-                if(password.equals(repassword)){
+        if (meno.equals("") || mail.equals("") || password.equals("")) {
+            Toast.makeText(registracia.this, "Zadajte udaje", Toast.LENGTH_SHORT).show();
+        } else {
+            if (password.equals(repassword)) {
                     /*CompletableFuture.supplyAsync(() -> {
                         try {
                             return noteViewModel.checkMail(email);
@@ -99,36 +97,36 @@ public class registracia extends AppCompatActivity {
                             return -1L;
                         }
                     })*/
-                    noteViewModel.checkMail(email).thenAccept(forchek -> {
-                        if (forchek != -1) {
-                            Toast.makeText(registracia.this, "User already exist", Toast.LENGTH_SHORT).show();
-                        } else {
-                            MainActivity.meno = meno;
-                            Signup.idForData = email;
-                            MainActivity.password = password;
+                noteViewModel.checkMail(email).thenAccept(forchek -> {
+                    if (forchek != -1) {
+                        Toast.makeText(registracia.this, "User already exist", Toast.LENGTH_SHORT).show();
+                    } else {
+                        MainActivity.meno = meno;
+                        Signup.idForData = email;
+                        MainActivity.password = password;
 
 
-                            noteViewModel.addUser(email, password, meno);
+                        noteViewModel.addUser(email, password, meno);
 
 
-                            Signup.idForData = email;
-                            Intent intent = new Intent(this, MainActivity.class);
-                            String key = email + dnesDate;
-                            MainActivity.password = password;
-                            Signup.meno = meno;
+                        Signup.idForData = email;
+                        Intent intent = new Intent(this, MainActivity.class);
+                        String key = email + dnesDate;
+                        MainActivity.password = password;
+                        Signup.meno = meno;
 
-                            startActivity(intent);
-                        }
-                    });
-                }else{
-                    Toast.makeText(registracia.this, "Wrong password", Toast.LENGTH_SHORT).show();
-                }
+                        startActivity(intent);
+                    }
+                });
+            } else {
+                Toast.makeText(registracia.this, "Wrong password", Toast.LENGTH_SHORT).show();
             }
+        }
 
     }
 
-    public void GoToPrihlas(View v){
-        switch (v.getId()){
+    public void GoToPrihlas(View v) {
+        switch (v.getId()) {
             case R.id.gotoprihlas:
                 Intent intent = new Intent(this, Signup.class);
                 startActivity(intent);
